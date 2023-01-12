@@ -47,6 +47,6 @@ public class Coffee_shop {
 
     @Override
     public String toString (){
-        return String.format("Coffee_shop{%d,%s,%s,%s}", this.getCsId(),this.getName(),this.getAddress(),this.phoneNumber);
+        return String.format("Coffee_shop{%d, %s, %s, %s}", this.getCsId(),this.getName(),this.getAddress(),this.phoneNumber);
     }
 }

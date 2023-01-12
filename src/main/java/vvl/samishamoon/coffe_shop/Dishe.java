@@ -73,4 +73,8 @@ public class Dishe {
     public String toString() {
         return String.format("Dishe{%d, %s, %s, %s, inside: %f, outside: %f}", this.getDishId(), this.getName(), this.getAdds(), this.getType(), this.getPriceIn(), this.getPriceOut());
     }
+
+    public boolean equals(Dishe other) {
+        return this.getDishId() == other.getDishId();
+    }
 }
