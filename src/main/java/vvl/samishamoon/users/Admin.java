@@ -1,8 +1,11 @@
 package vvl.samishamoon.users;
 
 public class Admin extends User {
-    public Admin(int id, String login, String password) {
+    private int CsId;
+
+    public Admin(int id, String login, String password, int CsId) {
         super(id, login, password);
+        this.CsId = CsId;
     }
 
     @Override
