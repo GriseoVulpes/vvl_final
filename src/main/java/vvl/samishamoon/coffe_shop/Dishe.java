@@ -7,20 +7,23 @@ public class Dishe {
     private double priceIn;
     private double priceOut;
     public int dishId;
+    private final int season;
+    private final int timeShift;
 
-    public Dishe(String name, String type, double priceIn, double priceOut, int dishId, String adds){
+    public Dishe(String name, String type, double priceIn, double priceOut, int dishId, String adds, int season, int timeShift){
         this.name = name;
         this.type = type;
         this.priceIn = priceIn;
         this.priceOut = priceOut;
         this.dishId = dishId;
         this.adds = adds;
+        this.season = season;
+        this.timeShift = timeShift;
     }
 
-    public Dishe(String name, String type, double priceIn, double priceOut, int dishId){
-        this(name, type, priceIn, priceOut, dishId, "NoAdds");
+    public Dishe(String name, String type, double priceIn, double priceOut, int dishId, int season, int timeShift){
+         this(name, type, priceIn, priceOut, dishId, "NoAdd", season,timeShift);
     }
-
     public String getName() {
         return name;
     }
@@ -69,9 +72,17 @@ public class Dishe {
         this.dishId = dishId;
     }
 
+    public int getSeason() {
+        return season;
+    }
+
+    public int getTimeShift() {
+        return timeShift;
+    }
+
     @Override
     public String toString() {
-        return String.format("Dishe{%d, %s, %s, %s, inside: %f, outside: %f}", this.getDishId(), this.getName(), this.getAdds(), this.getType(), this.getPriceIn(), this.getPriceOut());
+        return String.format("Dishe{DishId: %d, name: %s, Adds: %s, type: %s, inside: %f, outside: %f,season: %d, timeShift: %d}", this.getDishId(), this.getName(), this.getAdds(), this.getType(), this.getPriceIn(), this.getPriceOut(),this.getSeason(),this.getTimeShift());
     }
 
     public boolean equals(Dishe other) {
