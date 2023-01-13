@@ -6,7 +6,6 @@ public class Barista extends User {
     private int phone_number;
     private String email;
 
-
     public Barista(int id, String login, String password, String name, int time_shift, int phone_number, String email) {
         super(id, login, password);
         this.name = name;
@@ -15,8 +14,8 @@ public class Barista extends User {
         this.email = email;
     }
 
-    public Barista(int id, String login, String password) {
-        this(id, login, password, "NoName", 0, 0, "NoEmail");
+    public Barista(int id, String login, String password, int time_shift) {
+        this(id, login, password, "NoName", time_shift, 0, "NoEmail");
     }
 
     public int getTime_shift() {
@@ -53,6 +52,6 @@ public class Barista extends User {
 
     @Override
     public String toString() {
-        return String.format("Barista{%d, %s, %s, %s, %d, %s}", this.getId(), this.getName(), this.getLogin(), this.getEmail(), this.getPhone_number(), this.getTime_shift());
+        return String.format("Barista{id: %d, name: %s, Login: %s, email: %s, Phone number: %d, Time_shift %s}", this.getId(), this.getName(), this.getLogin(), this.getEmail(), this.getPhone_number(), this.getTime_shift());
     }
 }
