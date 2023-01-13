@@ -7,6 +7,14 @@ public class Admin extends User {
 
     @Override
     public String toString() {
-        return String.format("Admin{%d, %s}", this.getId(), this.getLogin());
+        return String.format("Admin{%d, %s, %d}", this.getId(), this.getLogin(), this.getCsId());
+    }
+
+    public int getCsId() {
+        return CsId;
+    }
+
+    public void setCsId(int csId) {
+        CsId = csId;
     }
 }
