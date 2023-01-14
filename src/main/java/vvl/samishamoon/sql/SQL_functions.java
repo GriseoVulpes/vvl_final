@@ -65,16 +65,36 @@ public class SQL_functions {
         return ans;
     }
 
-//    public void updateAdmin(Admin a) {
-//        try (Connection conn = DriverManager.getConnection(url, props);
-//             Statement st = conn.createStatement();
-//             st.executeUpdate(String.format("UPDATE \"Admin\"\nSET \"AdminId\" = %d, \"Login\" = %s, \"Password\" = %s, \"CSID\" = %d\nWHERE \"AdminId\" = %d;",
-//                     a.getId(), a.getLogin(), a.getPassword(), a.getCsId(), a.getId()
-//                     )
-//             );
-//             ) {
-//        } catch (SQLException e) {
-//            System.out.println(e.getMessage());
-//        }
-//    }
+    public void updateAdmin(Admin a) {
+        try (Connection conn = DriverManager.getConnection(url, props);
+             Statement st = conn.createStatement();)
+        {
+            st.executeUpdate(String.format("UPDATE \"Admin\"\n" +
+                                    "SET \"AdminId\" = %d, \"Login\" = '%s', \"Password\" = '%s', \"CSID\" = %d\n" +
+                                    "WHERE \"AdminId\" = %d;",
+                    a.getId(), a.getLogin(), a.getPassword(), a.getCsId(), a.getId()
+            )
+            );
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void insertAdmin(Admin a) {
+        try (Connection conn = DriverManager.getConnection(url, props);
+             Statement st = conn.createStatement();)
+        {
+            System.out.println(String.format("INSERT INTO \"Admin\" (\"AdminId\", \"Login\", \"Password\", \"CSID\")\n" +
+                            "values (%d, %s, %s, %d);",
+                    a.getId(), a.getLogin(), a.getPassword(), a.getCsId()
+            ));
+            st.executeUpdate(String.format("INSERT INTO \"Admin\" (\"AdminId\", \"Login\", \"Password\", \"CSID\")\n" +
+                            "values (%d, '%s', '%s', %d);",
+                            a.getId(), a.getLogin(), a.getPassword(), a.getCsId()
+                    )
+            );
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }
