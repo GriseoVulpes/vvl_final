@@ -1,10 +1,17 @@
 package vvl.samishamoon.coffe_shop;
 
+import vvl.samishamoon.sql.SQL_functions;
+import vvl.samishamoon.users.Admin;
+
+import java.sql.*;
+import java.util.ArrayList;
+
 public class Coffee_shop {
     private int csId;
     private String name;
     private String address;
     private String phoneNumber;
+
 
     public Coffee_shop(int csId, String name, String address, String phoneNumber){
         this.csId = csId;
@@ -47,6 +54,6 @@ public class Coffee_shop {
 
     @Override
     public String toString (){
-        return String.format("Coffee_shop{%d, %s, %s, %s}", this.getCsId(),this.getName(),this.getAddress(),this.phoneNumber);
+        return String.format("Coffee_shop{%d, %s, %s, %s}", this.getCsId(),this.getName(),this.getAddress(),this.getPhoneNumber());
     }
 }
