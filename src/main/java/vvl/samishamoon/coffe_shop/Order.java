@@ -76,6 +76,14 @@ public class Order {
         return is_inside;
     }
 
+    public void setIs_inside(boolean is_inside) {
+        this.is_inside = is_inside;
+    }
+
+    public boolean getIs_inside() {
+        return is_inside;
+    }
+
     public String toString() {
         return String.format("Order{%d, %s, %s, %s, %s, %s}",
                 this.getOrd_id(), this.getDate(),

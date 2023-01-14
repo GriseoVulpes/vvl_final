@@ -8,19 +8,19 @@ import vvl.samishamoon.users.*;
 import vvl.samishamoon.util.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Main {
     public static void main(String[] args) {
         SQL_functions g = new SQL_functions();
-
         g.testDB();
 
-        ArrayList<Order> as = g.getOrders();
-        System.out.println(as);
-//        Admin a = g.getAdmin(1);
-//        System.out.println(a);
-//        ArrayList<Admin> as = g.getAdmins();
-//        System.out.println(GetById.GetById_Admin(as, 1));
+        Admin a = g.getAdmin(1);
+        a.setId(3);
+        g.insertAdmin(a);
+        System.out.println(g.getAdmins());
+        g.deleteAdmin(3);
+        System.out.println(g.getAdmins());
 
 //
 //        Barista b = g.getBarista(1);
@@ -38,9 +38,20 @@ public class Main {
 //        ArrayList<Coffee_shop> css = g.getCoffee_shops();
 //        System.out.println(css);
 //
-//        Dishe d = g.getDishe(1);
+
+//        Dishe d = g.getDishe(20);
+//        g.deleteDish(20);
 //        System.out.println(d);
+//        g.insertDishe(d);
+
 //        ArrayList<Dishe> ds = g.getDishes();
 //        System.out.println(ds);
+//        g.deleteClient(17);
+
+//        Order o = new Order(11, g.getClient(2), g.getCoffee_shop(2), g.getBarista(5), new Date());
+//        o.addDish(g.getDishe(11));
+//        g.insertOrder(o);
+//        System.out.println(g.getOrders());
+
     }
 }
