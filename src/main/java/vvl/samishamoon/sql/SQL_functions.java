@@ -269,12 +269,9 @@ public class SQL_functions {
         try (Connection conn = DriverManager.getConnection(url, props);
              Statement st = conn.createStatement();)
         {
-            System.out.println(String.format("INSERT INTO \"Admin\" (\"AdminId\", \"Login\", \"Password\", \"CSID\")\n" +
-                            "values (%d, %s, %s, %d);",
-                    a.getId(), a.getLogin(), a.getPassword(), a.getCsId()
-            ));
-            st.executeUpdate(String.format("INSERT INTO \"Admin\" (\"AdminId\", \"Login\", \"Password\", \"CSID\")\n" +
-                            "values (%d, '%s', '%s', %d);",
+            st.executeUpdate(String.format("INSERT INTO \"Admin\" " +
+                            "(\"AdminId\", \"Login\", \"Password\", \"CSID\")\n" +
+                            "VALUES (%d, '%s', '%s', %d);",
                             a.getId(), a.getLogin(), a.getPassword(), a.getCsId()
                     )
             );
