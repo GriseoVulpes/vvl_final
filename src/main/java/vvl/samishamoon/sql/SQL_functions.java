@@ -73,13 +73,13 @@ public class SQL_functions {
         ArrayList<Coffee_shop> ans = new ArrayList<Coffee_shop>();
         try (Connection conn = DriverManager.getConnection(url,props);
              Statement st = conn.createStatement();
-             ResultSet rs = st.executeQuery("SELECT * FROM \"Coffee_shop\";");) {
+             ResultSet rs = st.executeQuery("SELECT * FROM \"CoffeeShop\";");) {
             while (rs.next()) {
                 ans.add(new Coffee_shop(
-                        rs.getInt("CsId"),
+                        rs.getInt("CSID"),
                         rs.getString("Name"),
-                        rs.getString("Address"),
-                        rs.getString("Phone_number")
+                        rs.getString("Adress"),
+                        rs.getString("PhoneNumber")
                         )
                 );
             }
@@ -93,13 +93,13 @@ public class SQL_functions {
         Coffee_shop ans = null;
         try (Connection conn = DriverManager.getConnection(url, props);
              Statement st = conn.createStatement();
-             ResultSet rs = st.executeQuery(String.format("SELECT * FROM \"Coffee_shop\" x WHERE x.\"CsId\" = %d;", ind));) {
+             ResultSet rs = st.executeQuery(String.format("SELECT * FROM \"CoffeeShop\" x WHERE x.\"CSID\" = %d;", ind));) {
             rs.next();
             ans = new Coffee_shop(
-                    rs.getInt("CsId"),
+                    rs.getInt("CSID"),
                     rs.getString("Name"),
-                    rs.getString("Address"),
-                    rs.getString("Phone_number")
+                    rs.getString("Adress"),
+                    rs.getString("PhoneNumber")
             );
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -187,7 +187,7 @@ public class SQL_functions {
              ResultSet rs = st.executeQuery(String.format("SELECT * FROM \"Barista\" x WHERE x.\"BarId\" = %d;", ind));) {
             rs.next();
             ans = new Barista(
-                    rs.getInt("id"),
+                    rs.getInt("Barid"),
                     rs.getString("Login"),
                     rs.getString("Password"),
                     rs.getString("Name"),
@@ -210,14 +210,14 @@ public class SQL_functions {
              ResultSet rs = st.executeQuery("SELECT * FROM \"Client\";");) {
             while (rs.next()) {
                 ans.add(new Client(
-                                rs.getInt("id"),
-                                rs.getString("Login"),
-                                rs.getString("Password"),
+                                rs.getInt("Clid"),
+                                null,
+                                null,
                                 rs.getString("Name"),
                                 rs.getString("Adress"),
                                 rs.getDate("Birthday"),
                                 rs.getBoolean("VipStatus"),
-                                rs.getInt("PhoneNumber")
+                                rs.getString("PhoneNumber")
                         )
                 );
             }
@@ -234,14 +234,14 @@ public class SQL_functions {
              ResultSet rs = st.executeQuery(String.format("SELECT * FROM \"Client\" x WHERE x.\"ClId\" = %d;", ind));) {
             rs.next();
             ans = new Client(
-                    rs.getInt("id"),
-                    rs.getString("Login"),
-                    rs.getString("Password"),
+                    rs.getInt("Clid"),
+                    null,
+                    null,
                     rs.getString("Name"),
                     rs.getString("Adress"),
                     rs.getDate("Birthday"),
                     rs.getBoolean("VipStatus"),
-                    rs.getInt("PhoneNumber")
+                    rs.getString("PhoneNumber")
             );
         } catch (SQLException e) {
             System.out.println(e.getMessage());
