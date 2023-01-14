@@ -12,18 +12,20 @@ public class Order {
     private Barista barista;
     private Coffee_shop coffee_shop;
     private ArrayList<Dishe> dishes;
-    private ArrayList<Integer> amounts;
+    private boolean is_inside;
 
-    public Order(int ord_id, Client client, Barista barista, ArrayList<Dishe> dishes, ArrayList<Integer> amounts) {
+    public Order(int ord_id, Client client, Coffee_shop coffee_shop, Barista barista, ArrayList<Dishe> dishes, Date date, boolean is_inside) {
         this.ord_id = ord_id;
         this.client = client;
+        this.coffee_shop = coffee_shop;
         this.barista = barista;
         this.dishes = dishes;
-        this.amounts = amounts;
+        this.date = date;
+        this.is_inside = is_inside;
     }
 
-    public Order(int ord_id, Client client, Barista barista) {
-        this(ord_id, client, barista, new ArrayList<>(), new ArrayList<Integer>());
+    public Order(int ord_id, Client client, Coffee_shop coffee_shop, Barista barista, Date date) {
+        this(ord_id, client, coffee_shop, barista, new ArrayList<Dishe>(), date, true);
     }
 
     public int getOrd_id() {
@@ -70,12 +72,12 @@ public class Order {
         this.date = date;
     }
 
-    public ArrayList<Integer> getAmounts() {
-        return amounts;
+    public boolean getAmounts() {
+        return is_inside;
     }
 
     public String toString() {
-        return String.format("Admin{%d, %s, %s, %s, %s, %s}",
+        return String.format("Order{%d, %s, %s, %s, %s, %s}",
                 this.getOrd_id(), this.getDate(),
                 this.getClient(),
                 this.getCoffee_shop(),
@@ -83,13 +85,7 @@ public class Order {
                 this.getDishes());
     }
 
-    public void addDish(Dishe dish, int amount) {
-        for (int i = 0; i < this.getDishes().size(); i++)
-            if (this.getDishes().get(i) == dish) {
-                this.amounts.set(i, this.getAmounts().get(i) + amount);
-                return;
-            }
+    public void addDish(Dishe dish) {
         this.dishes.add(dish);
-        this.amounts.add(amount);
     }
 }

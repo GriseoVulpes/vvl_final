@@ -6,6 +6,7 @@ import vvl.samishamoon.coffe_shop.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Properties;
 
 public class SQL_functions {
@@ -248,6 +249,68 @@ public class SQL_functions {
         }
         return ans;
     }
+
+    public ArrayList<Order> getOrders() {
+        ArrayList<Order> ans = new ArrayList<Order>();
+
+        try (Connection conn = DriverManager.getConnection(url, props);
+             Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery("SELECT \"Order\".\"OrdId\", \"Order\".\"CSId\", \"Order\".\"ClId\", \"Order\".\"BarId\", \"Order\".\"InOut\", \"DishOrd\".\"TimeStamp\", \"DishOrd\".\"DishId\"\n" +
+                     "FROM \"Order\", \"DishOrd\"\n" +
+                     "WHERE \"Order\".\"OrdId\" = \"DishOrd\".\"OrdId\"\n" +
+                     "ORDER BY \"Order\".\"OrdId\";");) {
+            ArrayList<Dishe> ds = new ArrayList<>();
+            int ordid = -1;
+            Coffee_shop cs = null;
+            Client cl = null;
+            Barista b = null;
+            boolean is_inside = true;
+            Date d = null;
+            while (rs.next()) {
+                int old_ordid = ordid;
+                ordid = rs.getInt("OrdId");
+
+                if (ordid != old_ordid && old_ordid != -1) {
+                    ans.add(new Order(old_ordid, cl, cs, b, ds, d, is_inside));
+                    ds = new ArrayList<Dishe>();
+                }
+
+                cs = this.getCoffee_shop(rs.getInt("CSId"));
+                cl = this.getClient(rs.getInt("ClId"));
+                b = this.getBarista(rs.getInt("BarId"));
+                is_inside = rs.getBoolean("InOut");
+                d = rs.getDate("TimeStamp");
+                ds.add(this.getDishe(rs.getInt("DishId")));
+            }
+
+            if (ordid != -1 && ans.size() == 0) {
+                ans.add(new Order(ordid, cl, cs, b, ds, d, is_inside));
+                ds = new ArrayList<Dishe>();
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return ans;
+    }
+
+//    public Order getOrder(int ind) {
+//        Order ans = null;
+//        try (Connection conn = DriverManager.getConnection(url, props);
+//             Statement st = conn.createStatement();
+//             ResultSet rs = st.executeQuery(String.format("SELECT * FROM \"Admin\" x WHERE x.\"AdminId\" = %d;", ind));) {
+//            rs.next();
+//            ans = new Admin(
+//                    rs.getInt("AdminId"),
+//                    rs.getString("Login"),
+//                    rs.getString("Password"),
+//                    rs.getInt("CsId")
+//            );
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage());
+//        }
+//        return ans;
+//    }
 
 
     public void updateAdmin(Admin a) {
