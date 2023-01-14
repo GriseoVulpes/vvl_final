@@ -4,14 +4,10 @@ package vvl.samishamoon.users;
 public abstract class User {
     private int id;
     private String login;
-    private int password;
+    private String password;
 
 
     public User(int id, String login, String password) {
-        this(id, login, password.hashCode());
-    }
-
-    public User(int id, String login, int password) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -33,16 +29,16 @@ public abstract class User {
         this.login = login;
     }
 
-    public int getPassword() {
+    public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
-        this.password = password.hashCode();
+        this.password = password;
     }
 
     public boolean checkPassword(String password) {
-        return (this.password == password.hashCode());
+        return (this.password == password);
     }
 
     @Override
