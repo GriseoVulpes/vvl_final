@@ -165,6 +165,7 @@ public class SQL_functions {
             while (rs.next()) {
                 ans.add(new Barista(
                                 rs.getInt("Barid"),
+                                rs.getInt("CSID"),
                                 rs.getString("Login"),
                                 rs.getString("Password"),
                                 rs.getString("Name"),
@@ -188,6 +189,7 @@ public class SQL_functions {
             rs.next();
             ans = new Barista(
                     rs.getInt("Barid"),
+                    rs.getInt("CSID"),
                     rs.getString("Login"),
                     rs.getString("Password"),
                     rs.getString("Name"),
@@ -249,7 +251,9 @@ public class SQL_functions {
         return ans;
     }
 
-
+    //                      -------
+    // --------------------------------------------------- UPDATE/INSERT ADMIN
+    //                      -------
     public void updateAdmin(Admin a) {
         try (Connection conn = DriverManager.getConnection(url, props);
              Statement st = conn.createStatement();)
@@ -279,4 +283,139 @@ public class SQL_functions {
             System.out.println(e.getMessage());
         }
     }
+    //                      -------
+    // --------------------------------------------------- UPDATE/INSERT COFFEE_SHOP
+    //                      -------
+    public void updateCoffee_shop (Coffee_shop cs) {
+        try (Connection conn = DriverManager.getConnection(url, props);
+             Statement st = conn.createStatement();)
+        {
+            st.executeUpdate(String.format("UPDATE \"CoffeeShop\"\n" +
+                                    "SET \"CSID\" = %d, \"Name\" = '%s', \"Adress\" = '%s', \"PhoneNumber\" = '%s'\n" +
+                                    "WHERE \"CSID\" = %d;",
+                            cs.getCsId(), cs.getName(), cs.getAddress(), cs.getPhoneNumber(),
+                            cs.getCsId()
+                    )
+            );
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void insertCoffee_shop(Coffee_shop cs) {
+        try (Connection conn = DriverManager.getConnection(url, props);
+             Statement st = conn.createStatement();)
+        {
+            st.executeUpdate(String.format("INSERT INTO \"CoffeeShop\" " +
+                                    "(\"CSID\", \"Name\", \"Adress\", \"PhoneNumber\")\n" +
+                                    "VALUES (%d, '%s', '%s', '%s');",
+                            cs.getCsId(), cs.getName(), cs.getAddress(), cs.getPhoneNumber()
+                    )
+            );
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    //                      -------
+    // --------------------------------------------------- UPDATE/INSERT DISHES
+    //                      -------
+    public void updateDishe (Dishe d) {
+        try (Connection conn = DriverManager.getConnection(url, props);
+             Statement st = conn.createStatement();)
+        {
+            st.executeUpdate(String.format("UPDATE \"Dishes\"\n" +
+                                    "SET \"DishId\" = %d, \"Name\" = '%s', \"Type\" = '%s', \"Adds\" = '%s', \"PriceIn\" = %f, \"PriceOut\" = %f, \"Season\" = %d, \"TimeShift\" = %d\n" +
+                                    "WHERE \"DishId\" = %d;",
+                            d.getDishId(), d.getName(), d.getType(), d.getAdds(), d.getPriceIn(), d.getPriceOut(), d.getSeason(),d.getTimeShift(),
+                            d.getDishId()
+                    )
+            );
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void insertDishe(Dishe d) {
+        try (Connection conn = DriverManager.getConnection(url, props);
+             Statement st = conn.createStatement();)
+        {
+            st.executeUpdate(String.format("INSERT INTO \"Dishes\" " +
+                                    "(\"DishId\", \"Name\", \"Type\", \"Adds\", \"PriceIn\", \"PriceOut\", \"Season\", \"TimeShift\")\n" +
+                                    "VALUES (%d, '%s', '%s', '%s', %f, %f, %d, %d);",
+                            d.getDishId(), d.getName(), d.getType(), d.getAdds(), d.getPriceIn(), d.getPriceOut(), d.getSeason(),d.getTimeShift()
+                    )
+            );
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    //                      -------
+    // --------------------------------------------------- UPDATE/INSERT BARISTA
+    //                      -------
+    public void updateBarista (Barista b) {
+        try (Connection conn = DriverManager.getConnection(url, props);
+             Statement st = conn.createStatement();)
+        {
+            st.executeUpdate(String.format("UPDATE \"Barista\"\n" +
+                                    "SET \"BarId\" = %d, \"Login\" = '%s', \"Password\" = '%s', \"Mail\" = '%s', \"Phone number\" = '%s', \"Name\" = '%s', \"TimeShift\" = %d, \"CSID\" = %d\n" +
+                                    "WHERE \"BarId\" = %d;",
+                            b.getId(), b.getLogin(), b.getPassword(), b.getEmail(), b.getPhone_number(), b.getName(), b.getTime_shift(), b.getCsId(),
+                            b.getId()
+                    )
+            );
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void insertBarista (Barista b) {
+        try (Connection conn = DriverManager.getConnection(url, props);
+             Statement st = conn.createStatement();)
+        {
+            st.executeUpdate(String.format("INSERT INTO \"Barista\" " +
+                                    "(SET \"BarId\", \"Login\", \"Password\", \"Mail\", \"Phone number\", \"Name\", \"TimeShift\", \"CSID\")\n" +
+                                    "VALUES (%d, '%s', '%s', '%s', '%s', %d, %d);",
+                            b.getId(), b.getLogin(), b.getPassword(), b.getEmail(), b.getPhone_number(), b.getName(), b.getTime_shift(), b.getCsId(),
+                            b.getId()
+                    )
+            );
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    //                      -------
+    // --------------------------------------------------- UPDATE/INSERT CLIENT
+    //                      -------
+    public void updateClient (Client c) {
+        try (Connection conn = DriverManager.getConnection(url, props);
+             Statement st = conn.createStatement();)
+        {
+            st.executeUpdate(String.format("UPDATE \"Client\"\n" +
+                                    "SET \"ClId\" = %d, \"Name\" = '%s', \"Adress\" = '%s', \"Birthday\" = %t, \"VipStatus\" = %b, \"PhoneNumber\" = '%s'\n" +
+                                    "WHERE \"ClId\" = %d;",
+                            c.getId(), c.getName(), c.getEmail(), c.getBirthday(), c.isIs_vip(), c.getPhone_number(),
+                            c.getId()
+                    )
+            );
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void insertClient (Client c) {
+        try (Connection conn = DriverManager.getConnection(url, props);
+             Statement st = conn.createStatement();)
+        {
+            st.executeUpdate(String.format("INSERT INTO \"Client\" " +
+                                    "(SET \"ClId\", \"Name\", \"Adress\", \"Birthday\", \"VipStatus\", \"Phonenumber\")\n" +
+                                    "VALUES (%d, '%s', '%s', %t, %b, '%s');",
+                            c.getId(), c.getName(), c.getEmail(), c.getBirthday(), c.isIs_vip(), c.getPhone_number(),
+                            c.getId()
+                    )
+            );
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
 }

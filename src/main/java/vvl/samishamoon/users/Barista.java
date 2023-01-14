@@ -5,17 +5,19 @@ public class Barista extends User {
     private int time_shift;
     private int phone_number;
     private String email;
+    private int csId;
 
-    public Barista(int id, String login, String password, String name, int time_shift, int phone_number, String email) {
+    public Barista(int id,int csId, String login, String password, String name, int time_shift, int phone_number, String email) {
         super(id, login, password);
+        this.csId = csId;
         this.name = name;
         this.time_shift = time_shift;
         this.phone_number = phone_number;
         this.email = email;
     }
 
-    public Barista(int id, String login, String password, int time_shift) {
-        this(id, login, password, "NoName", time_shift, 0, "NoEmail");
+    public Barista(int id, int csId, String login, String password, int time_shift) {
+        this(id, csId, login, password, "NoName", time_shift, 0, "NoEmail");
     }
 
     public int getTime_shift() {
@@ -50,8 +52,16 @@ public class Barista extends User {
         this.name = name;
     }
 
+    public int getCsId() {
+        return csId;
+    }
+
+    public void setCsId(int csId) {
+        this.csId = csId;
+    }
+
     @Override
     public String toString() {
-        return String.format("Barista{id: %d, name: %s, Login: %s, email: %s, Phone number: %d, Time_shift %s}", this.getId(), this.getName(), this.getLogin(), this.getEmail(), this.getPhone_number(), this.getTime_shift());
+        return String.format("Barista{id: %d, csId: %d name: %s, Login: %s, email: %s, Phone number: %d, Time_shift %s}", this.getId(), this.getCsId(), this.getName(), this.getLogin(), this.getEmail(), this.getPhone_number(), this.getTime_shift());
     }
 }
