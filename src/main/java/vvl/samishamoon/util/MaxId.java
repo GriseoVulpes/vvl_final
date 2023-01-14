@@ -1,12 +1,11 @@
 package vvl.samishamoon.util;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import vvl.samishamoon.coffe_shop.*;
 import vvl.samishamoon.users.*;
 
-public class Utility {
+public class MaxId {
     // get_max_ids
     public static int maxID_Admin(ArrayList<Admin> as) {
         int ans = 0;
