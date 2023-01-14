@@ -8,10 +8,10 @@ Client extends User {
     private String email;
     private Date birthday;
     private boolean is_vip;
-    private int phone_number;
+    private String phone_number;
 
 
-    public Client(int id, String login, String password, String name, String email, Date birthday, boolean is_vip, int phone_number) {
+    public Client(int id, String login, String password, String name, String email, Date birthday, boolean is_vip, String phone_number) {
         super(id, login, password);
         this.name = name;
         this.email = email;
@@ -21,7 +21,7 @@ Client extends User {
     }
 
     public Client(int id, String login, String password) {
-        this(id, login, password, "NoName", "NoEmail", new Date(), false, 0);
+        this(id, login, password, "NoName", "NoEmail", new Date(), false, "");
     }
 
     public String getName() {
@@ -56,16 +56,16 @@ Client extends User {
         this.is_vip = is_vip;
     }
 
-    public int getPhone_number() {
+    public String getPhone_number() {
         return phone_number;
     }
 
-    public void setPhone_number(int phone_number) {
+    public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
     }
 
     @Override
     public String toString() {
-        return String.format("Client{%d, %s, %s, %s, %d, %s, vip:%b}", this.getId(), this.getName(), this.getLogin(), this.getEmail(), this.getPhone_number(), this.getBirthday(), this.isIs_vip());
+        return String.format("Client{%d, %s, %s, %s, %s, %s, vip:%b}", this.getId(), this.getName(), this.getLogin(), this.getEmail(), this.getPhone_number(), this.getBirthday(), this.isIs_vip());
     }
 }
