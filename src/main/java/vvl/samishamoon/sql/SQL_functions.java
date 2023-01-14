@@ -165,13 +165,14 @@ public class SQL_functions {
              ResultSet rs = st.executeQuery("SELECT * FROM \"Barista\";");) {
             while (rs.next()) {
                 ans.add(new Barista(
-                                rs.getInt("Barid"),
-                                rs.getString("Login"),
-                                rs.getString("Password"),
-                                rs.getString("Name"),
-                                rs.getInt("TimeShift"),
-                                rs.getInt("Phone number"),
-                                rs.getString("Mail")
+                        rs.getInt("Barid"),
+                        rs.getInt("CsId"),
+                        rs.getString("Login"),
+                        rs.getString("Password"),
+                        rs.getString("Name"),
+                        rs.getInt("TimeShift"),
+                        rs.getInt("Phone number"),
+                        rs.getString("Mail")
                         )
                 );
             }
@@ -189,6 +190,7 @@ public class SQL_functions {
             rs.next();
             ans = new Barista(
                     rs.getInt("Barid"),
+                    rs.getInt("CsId"),
                     rs.getString("Login"),
                     rs.getString("Password"),
                     rs.getString("Name"),
