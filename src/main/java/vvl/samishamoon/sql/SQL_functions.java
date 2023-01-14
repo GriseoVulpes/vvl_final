@@ -109,47 +109,145 @@ public class SQL_functions {
     //                      -------
     // --------------------------------------------------- DISHES
     //                      -------
-//    public ArrayList<Dishe> getDishes() {
-//        ArrayList<Dishe> ans = new ArrayList<Dishe>();
-//        try (Connection conn = DriverManager.getConnection(url,props);
-//             Statement st = conn.createStatement();
-//             ResultSet rs = st.executeQuery("SELECT * FROM \"Dishes\";");) {
-//            while (rs.next()) {
-//                ans.add(new Dishe(
-//                                rs.getString("Name"),
-//                                rs.getString("Type"),
-//                                rs.getString("Adds"),
-//                                rs.getDouble("PriceIn"),
-//                                rs.getDouble("PriceOut"),
-//                                rs.getInt("dishId"),
-//                                rs.getInt("Season"),
-//                                rs.getInt("TimeShift")
-//                        )
-//                );
-//            }
-//        } catch (SQLException e) {
-//            System.out.println(e.getMessage());
-//        }
-//        return ans;
-//    }
-//
-//    public Dishe getDishe(int ind) {
-//        Coffee_shop ans = null;
-//        try (Connection conn = DriverManager.getConnection(url, props);
-//             Statement st = conn.createStatement();
-//             ResultSet rs = st.executeQuery(String.format("SELECT * FROM \"Admin\" x WHERE x.\"AdminId\" = %d;", ind));) {
-//            rs.next();
-//            ans = new Coffee_shop(
-//                    rs.getInt("CsId"),
-//                    rs.getString("Name"),
-//                    rs.getString("Address"),
-//                    rs.getString("Phone_number")
-//            );
-//        } catch (SQLException e) {
-//            System.out.println(e.getMessage());
-//        }
-//        return ans;
-//    }
+    public ArrayList<Dishe> getDishes() {
+        ArrayList<Dishe> ans = new ArrayList<Dishe>();
+        try (Connection conn = DriverManager.getConnection(url,props);
+             Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery("SELECT * FROM \"Dishes\";");) {
+            while (rs.next()) {
+                ans.add(new Dishe(
+                                rs.getString("Name"),
+                                rs.getString("Type"),
+                                rs.getDouble("PriceIn"),
+                                rs.getDouble("PriceOut"),
+                                rs.getInt("DishId"),
+                                rs.getString("Adds"),
+                                rs.getInt("Season"),
+                                rs.getInt("TimeShift")
+                        )
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return ans;
+    }
+
+    public Dishe getDishe(int ind) {
+        Dishe ans = null;
+        try (Connection conn = DriverManager.getConnection(url, props);
+             Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery(String.format("SELECT * FROM \"Dishes\" x WHERE x.\"DishId\" = %d;", ind));) {
+            rs.next();
+            ans = new Dishe(
+                    rs.getString("Name"),
+                    rs.getString("Type"),
+                    rs.getDouble("PriceIn"),
+                    rs.getDouble("PriceOut"),
+                    rs.getInt("DishId"),
+                    rs.getString("Adds"),
+                    rs.getInt("Season"),
+                    rs.getInt("TimeShift")
+            );
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return ans;
+    }
+    //                      -------
+    // --------------------------------------------------- BARISTA
+    //                      -------
+    public ArrayList<Barista> getBaristas() {
+        ArrayList<Barista> ans = new ArrayList<Barista>();
+        try (Connection conn = DriverManager.getConnection(url,props);
+             Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery("SELECT * FROM \"Barista\";");) {
+            while (rs.next()) {
+                ans.add(new Barista(
+                                rs.getInt("id"),
+                                rs.getString("Login"),
+                                rs.getString("Password"),
+                                rs.getString("Name"),
+                                rs.getInt("TimeShift"),
+                                rs.getInt("Phone number"),
+                                rs.getString("Mail")
+                        )
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return ans;
+    }
+
+    public Barista getBarista (int ind) {
+        Barista ans = null;
+        try (Connection conn = DriverManager.getConnection(url, props);
+             Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery(String.format("SELECT * FROM \"Barista\" x WHERE x.\"BarId\" = %d;", ind));) {
+            rs.next();
+            ans = new Barista(
+                    rs.getInt("id"),
+                    rs.getString("Login"),
+                    rs.getString("Password"),
+                    rs.getString("Name"),
+                    rs.getInt("TimeShift"),
+                    rs.getInt("Phone number"),
+                    rs.getString("Mail")
+            );
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return ans;
+    }
+    //                      -------
+    // --------------------------------------------------- CLIENT
+    //                      -------
+    public ArrayList<Client> getClients() {
+        ArrayList<Client> ans = new ArrayList<Client>();
+        try (Connection conn = DriverManager.getConnection(url,props);
+             Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery("SELECT * FROM \"Client\";");) {
+            while (rs.next()) {
+                ans.add(new Client(
+                                rs.getInt("id"),
+                                rs.getString("Login"),
+                                rs.getString("Password"),
+                                rs.getString("Name"),
+                                rs.getString("Adress"),
+                                rs.getDate("Birthday"),
+                                rs.getBoolean("VipStatus"),
+                                rs.getInt("PhoneNumber")
+                        )
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return ans;
+    }
+
+    public Client getClient (int ind) {
+        Client ans = null;
+        try (Connection conn = DriverManager.getConnection(url, props);
+             Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery(String.format("SELECT * FROM \"Client\" x WHERE x.\"ClId\" = %d;", ind));) {
+            rs.next();
+            ans = new Client(
+                    rs.getInt("id"),
+                    rs.getString("Login"),
+                    rs.getString("Password"),
+                    rs.getString("Name"),
+                    rs.getString("Adress"),
+                    rs.getDate("Birthday"),
+                    rs.getBoolean("VipStatus"),
+                    rs.getInt("PhoneNumber")
+            );
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return ans;
+    }
 
 
 //    public void updateAdmin(Admin a) {
