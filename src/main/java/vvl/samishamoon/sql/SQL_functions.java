@@ -164,7 +164,7 @@ public class SQL_functions {
              ResultSet rs = st.executeQuery("SELECT * FROM \"Barista\";");) {
             while (rs.next()) {
                 ans.add(new Barista(
-                                rs.getInt("id"),
+                                rs.getInt("Barid"),
                                 rs.getString("Login"),
                                 rs.getString("Password"),
                                 rs.getString("Name"),
