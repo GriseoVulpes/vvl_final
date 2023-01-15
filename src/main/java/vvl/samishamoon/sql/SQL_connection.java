@@ -2,6 +2,7 @@ package vvl.samishamoon.sql;
 
 import vvl.samishamoon.users.*;
 import vvl.samishamoon.coffe_shop.*;
+import vvl.samishamoon.util.GetBy;
 
 import java.sql.*;
 import java.util.*;
@@ -169,7 +170,7 @@ public class SQL_connection {
                         rs.getString("Password"),
                         rs.getString("Name"),
                         rs.getInt("TimeShift"),
-                        rs.getInt("Phone number"),
+                        rs.getString("Phone number"),
                         rs.getString("Mail")
                         )
                 );
@@ -193,7 +194,7 @@ public class SQL_connection {
                     rs.getString("Password"),
                     rs.getString("Name"),
                     rs.getInt("TimeShift"),
-                    rs.getInt("Phone number"),
+                    rs.getString("Phone number"),
                     rs.getString("Mail")
             );
         } catch (SQLException e) {
@@ -559,6 +560,9 @@ public class SQL_connection {
     }
 
     public void deleteBarista(int a) {
+        for(Order o: GetBy.GetByBar_Orders(this.getOrders(), a))
+            deleteOrder(o.getOrd_id());
+
         try (Connection conn = DriverManager.getConnection(url, props);
              Statement st = conn.createStatement();) {
             st.executeUpdate(String.format("DELETE FROM \"Barista\"\nWHERE \"BarId\" = %d;", a));
@@ -568,6 +572,9 @@ public class SQL_connection {
     }
 
     public void deleteClient(int a) {
+        for(Order o: GetBy.GetByCl_Orders(this.getOrders(), a))
+            deleteOrder(o.getOrd_id());
+
         try (Connection conn = DriverManager.getConnection(url, props);
              Statement st = conn.createStatement();) {
             st.executeUpdate(String.format("DELETE FROM \"Client\"\nWHERE \"ClId\" = %d;", a));
@@ -586,9 +593,28 @@ public class SQL_connection {
     }
 
     public void deleteDish(int a) {
+        for(Order o: GetBy.GetByDish_Orders(this.getOrders(), a))
+            deleteOrder(o.getOrd_id());
+
         try (Connection conn = DriverManager.getConnection(url, props);
              Statement st = conn.createStatement();) {
             st.executeUpdate(String.format("DELETE FROM \"Dishes\"\nWHERE \"DishId\" = %d;", a));
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void deleteOrder(int a) {
+        try (Connection conn = DriverManager.getConnection(url, props);
+             Statement st = conn.createStatement();) {
+            st.executeUpdate(String.format("DELETE FROM \"DishOrd\"\nWHERE \"OrdId\" = %d;", a));
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        try (Connection conn = DriverManager.getConnection(url, props);
+             Statement st = conn.createStatement();) {
+            st.executeUpdate(String.format("DELETE FROM \"Order\"\nWHERE \"OrdId\" = %d;", a));
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

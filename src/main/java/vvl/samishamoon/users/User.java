@@ -38,7 +38,6 @@ public abstract class User {
     }
 
     public boolean checkPassword(String password) {
-        System.out.println(Integer.toString(password.hashCode()));
         return (this.password.compareTo(Integer.toString(password.hashCode())) == 0);
     }
 

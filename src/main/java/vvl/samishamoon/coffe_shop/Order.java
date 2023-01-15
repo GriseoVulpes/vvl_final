@@ -2,6 +2,7 @@ package vvl.samishamoon.coffe_shop;
 
 
 import vvl.samishamoon.users.*;
+import vvl.samishamoon.util.GetBy;
 import vvl.samishamoon.util.PrintArray;
 
 import java.util.*;
@@ -106,6 +107,15 @@ public class Order {
 
     public void addDish(Dishe dish) {
         this.dishes.add(dish);
+    }
+
+    public void deleteDish(Dishe dish) {
+        for (int i = 0; i < this.getDishes().size(); i++) {
+            if (this.dishes.get(i).getDishId() == dish.getDishId()) {
+                this.dishes.remove(i);
+                return;
+            }
+        }
     }
 
     public void print() {

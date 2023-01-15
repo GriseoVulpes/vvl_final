@@ -5,12 +5,12 @@ import vvl.samishamoon.sql.SQL_connection;
 public class Barista extends User {
     private String name;
     private int time_shift;
-    private int phone_number;
+    private String phone_number;
     private String email;
     private int csId;
     private SQL_connection conn = new SQL_connection();
 
-    public Barista(int id, int csId, String login, String password, String name, int time_shift, int phone_number, String email) {
+    public Barista(int id, int csId, String login, String password, String name, int time_shift, String phone_number, String email) {
         super(id, login, password);
         this.csId = csId;
         this.name = name;
@@ -20,7 +20,7 @@ public class Barista extends User {
     }
 
     public Barista(int id, int csId, String login, String password, int time_shift) {
-        this(id, csId, login, password, "NoName", time_shift, 0, "NoEmail");
+        this(id, csId, login, password, "NoName", time_shift, "0", "NoEmail");
     }
 
     public int getTime_shift() {
@@ -31,11 +31,11 @@ public class Barista extends User {
         this.time_shift = time_shift;
     }
 
-    public int getPhone_number() {
+    public String getPhone_number() {
         return phone_number;
     }
 
-    public void setPhone_number(int phone_number) {
+    public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
     }
 
