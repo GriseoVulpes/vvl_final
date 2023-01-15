@@ -6,8 +6,8 @@ import vvl.samishamoon.coffe_shop.*;
 import vvl.samishamoon.users.*;
 
 
-public class GetById {
-    public static Admin GetById_Admin(ArrayList<Admin> as, int id) {
+public class GetBy {
+    public static Admin GetBy_Admin(ArrayList<Admin> as, int id) {
         for (Admin a: as)
             if (a.getId() == id)
                 return a;
