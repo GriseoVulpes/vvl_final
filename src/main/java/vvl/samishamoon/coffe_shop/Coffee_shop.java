@@ -1,11 +1,5 @@
 package vvl.samishamoon.coffe_shop;
 
-import vvl.samishamoon.sql.SQL_functions;
-import vvl.samishamoon.users.Admin;
-
-import java.sql.*;
-import java.util.ArrayList;
-
 public class Coffee_shop {
     private int csId;
     private String name;
@@ -55,5 +49,25 @@ public class Coffee_shop {
     @Override
     public String toString (){
         return String.format("Coffee_shop{%d, %s, %s, %s}", this.getCsId(),this.getName(),this.getAddress(),this.getPhoneNumber());
+    }
+
+    public void print() {
+        System.out.printf("""
+                        Кофейня
+                        Имя: %s
+                        Телефон: %s
+                        Адрес: %s
+
+                        """,
+                this.getName(), this.getPhoneNumber(), this.getAddress());
+    }
+
+    public void printMin() {
+        System.out.printf("""
+                        Кофейня
+                        Имя: %s
+
+                        """,
+                this.getName());
     }
 }

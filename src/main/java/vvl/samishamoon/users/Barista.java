@@ -1,13 +1,16 @@
 package vvl.samishamoon.users;
 
+import vvl.samishamoon.sql.SQL_connection;
+
 public class Barista extends User {
     private String name;
     private int time_shift;
     private int phone_number;
     private String email;
     private int csId;
+    private SQL_connection conn = new SQL_connection();
 
-    public Barista(int id,int csId, String login, String password, String name, int time_shift, int phone_number, String email) {
+    public Barista(int id, int csId, String login, String password, String name, int time_shift, int phone_number, String email) {
         super(id, login, password);
         this.csId = csId;
         this.name = name;
@@ -63,5 +66,28 @@ public class Barista extends User {
     @Override
     public String toString() {
         return String.format("Barista{id: %d, csId: %d name: %s, Login: %s, email: %s, Phone number: %d, Time_shift %s}", this.getId(), this.getCsId(), this.getName(), this.getLogin(), this.getEmail(), this.getPhone_number(), this.getTime_shift());
+    }
+
+    public void print() {
+        System.out.printf("""
+                        Бариста
+                        Логин: %s
+                        Имя: %s
+                        Электронная почта: %s
+                        Телефон: %s
+                        Смена: %s
+                        Кофешоп: %s
+                                         
+                        """,
+                this.getLogin(), this.getName(), this.getEmail(), this.getPhone_number(), this.getTime_shift(), conn.getCoffee_shop(this.getCsId()).getName());
+    }
+
+    public void printMin() {
+        System.out.printf("""
+                        Бариста
+                        Логин: %s
+                                                
+                        """,
+                this.getLogin());
     }
 }

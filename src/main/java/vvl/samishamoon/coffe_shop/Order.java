@@ -107,4 +107,29 @@ public class Order {
     public void addDish(Dishe dish) {
         this.dishes.add(dish);
     }
+
+    public void print() {
+        System.out.printf("""
+                        Заказ
+                        Номер заказа: %s
+                        Дата: %s
+                        Клиент: %s
+                        Бариста: %s
+                        Кофейня: %s
+                        Стоимость: %f
+                        В ресторане: %b
+                        """,
+                this.getOrd_id(), this.getDate(), this.getClient().getName(), this.getBarista().getName(), this.getCoffee_shop().getName(), this.sum_prise(), this.getIs_inside());
+        PrintArray.printDishes(this.getDishes());
+    }
+
+    public void printMin() {
+        System.out.printf("""
+                        Заказ
+                        Номер заказа: %s
+                        Сумма: %f
+
+                        """,
+                this.getOrd_id(), this.sum_prise());
+    }
 }

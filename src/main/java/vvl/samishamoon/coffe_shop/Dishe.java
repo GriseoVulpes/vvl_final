@@ -88,4 +88,26 @@ public class Dishe {
     public boolean equals(Dishe other) {
         return this.getDishId() == other.getDishId();
     }
+
+    public void print() {
+        System.out.printf("""
+                        Блюдо
+                        Название: %s
+                        Тип: %s
+                        Добавки: %s
+                        Цена: %s
+                        Цена на вынос: %s
+
+                        """,
+                this.getName(), this.getType(), this.getAdds(), this.getPriceIn(), this.getPriceOut());
+    }
+
+    public void printMin() {
+        System.out.printf("""
+                        Блюдо
+                        Название: %s
+
+                        """,
+                this.getName());
+    }
 }

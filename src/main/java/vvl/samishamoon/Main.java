@@ -1,18 +1,12 @@
 package vvl.samishamoon;
 
-import vvl.samishamoon.coffe_shop.Coffee_shop;
-import vvl.samishamoon.coffe_shop.Dishe;
-import vvl.samishamoon.coffe_shop.Order;
-import vvl.samishamoon.sql.SQL_functions;
+import vvl.samishamoon.sql.SQL_connection;
 import vvl.samishamoon.users.*;
 import vvl.samishamoon.util.*;
 
-import java.util.ArrayList;
-import java.util.Date;
-
 public class Main {
     public static void main(String[] args) {
-        SQL_functions g = new SQL_functions();
+        SQL_connection g = new SQL_connection();
         g.testDB();
 
         Admin a1 =  g.getAdmin(1);

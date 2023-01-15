@@ -7,11 +7,11 @@ import java.sql.*;
 import java.util.*;
 import java.util.Date;
 
-public class SQL_functions {
+public class SQL_connection {
     public String url;
     public Properties props;
 
-    public SQL_functions() {
+    public SQL_connection() {
         this.url = "jdbc:postgresql://localhost:5432/COFFEESHOP";
         this.props = new Properties();
         this.props.setProperty("user", "ADMIN");

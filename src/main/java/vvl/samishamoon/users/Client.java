@@ -8,12 +8,13 @@ Client extends User {
     private Date birthday;
     private boolean is_vip;
     private String phone_number;
+    private String address;
 
 
-    public Client(int id, String login, String password, String name, String email, Date birthday, boolean is_vip, String phone_number) {
+    public Client(int id, String login, String password, String name, String address, Date birthday, boolean is_vip, String phone_number) {
         super(id, login, password);
         this.name = name;
-        this.email = email;
+        this.address = address;
         this.birthday = birthday;
         this.is_vip = is_vip;
         this.phone_number = phone_number;
@@ -55,8 +56,35 @@ Client extends User {
         this.phone_number = phone_number;
     }
 
+    public String getAddress() {return address;}
+
+    public void setAddress(String address) {this.address = address;}
+
     @Override
     public String toString() {
         return String.format("Client{%d, %s, %s, %s, %s, vip:%b}", this.getId(), this.getName(), this.getLogin(), this.getPhone_number(), this.getBirthday(), this.isIs_vip());
+    }
+
+    public void print() {
+        System.out.printf("""
+                        Клиент
+                        Имя: %s
+                        Телефон: %s
+                        Адрес: %s
+                        Дата рождения: %s
+                        Вип клиент: %s
+
+                        """,
+                this.getName(), this.getPhone_number(), this.getAddress(), this.getBirthday(), this.isIs_vip());
+    }
+
+    public void printMin() {
+        System.out.printf("""
+                        Клиент
+                        Имя: %s
+                        Вип клиент: %s
+
+                        """,
+                this.getName(), this.isIs_vip());
     }
 }
