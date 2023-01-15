@@ -34,11 +34,12 @@ public abstract class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = Integer.toString(password.hashCode());
     }
 
     public boolean checkPassword(String password) {
-        return (this.password == password);
+        System.out.println(Integer.toString(password.hashCode()));
+        return (this.password.compareTo(Integer.toString(password.hashCode())) == 0);
     }
 
     @Override

@@ -5,7 +5,6 @@ import java.util.Date;
 public class
 Client extends User {
     private String name;
-    private String email;
     private Date birthday;
     private boolean is_vip;
     private String phone_number;
@@ -21,7 +20,7 @@ Client extends User {
     }
 
     public Client(int id, String login, String password) {
-        this(id, login, password, "NoName", "NoEmail", new Date(), false, "");
+        this(id, login, password, "NoName", "NoAddress", new Date(), false, "");
     }
 
     public String getName() {
@@ -30,14 +29,6 @@ Client extends User {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public Date getBirthday() {
@@ -66,6 +57,6 @@ Client extends User {
 
     @Override
     public String toString() {
-        return String.format("Client{%d, %s, %s, %s, %s, %s, vip:%b}", this.getId(), this.getName(), this.getLogin(), this.getEmail(), this.getPhone_number(), this.getBirthday(), this.isIs_vip());
+        return String.format("Client{%d, %s, %s, %s, %s, vip:%b}", this.getId(), this.getName(), this.getLogin(), this.getPhone_number(), this.getBirthday(), this.isIs_vip());
     }
 }

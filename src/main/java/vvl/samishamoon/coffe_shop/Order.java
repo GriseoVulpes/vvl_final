@@ -2,6 +2,7 @@ package vvl.samishamoon.coffe_shop;
 
 
 import vvl.samishamoon.users.*;
+import vvl.samishamoon.util.PrintArray;
 
 import java.util.*;
 
@@ -72,10 +73,6 @@ public class Order {
         this.date = date;
     }
 
-    public boolean getAmounts() {
-        return is_inside;
-    }
-
     public void setIs_inside(boolean is_inside) {
         this.is_inside = is_inside;
     }
@@ -84,8 +81,22 @@ public class Order {
         return is_inside;
     }
 
+    public double sum_prise() {
+        double ans = 0;
+        if (this.getIs_inside()) {
+            for (Dishe d: this.getDishes())
+                ans += d.getPriceIn();
+        }
+        else {
+            for (Dishe d: this.getDishes())
+                ans += d.getPriceOut();
+        }
+        return ans;
+    }
+
+
     public String toString() {
-        return String.format("Order{%d, %s, %s, %s, %s, %s}",
+        return String.format("Order{%d, %t, %s, %s, %s, %s}",
                 this.getOrd_id(), this.getDate(),
                 this.getClient(),
                 this.getCoffee_shop(),

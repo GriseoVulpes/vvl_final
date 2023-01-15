@@ -211,14 +211,14 @@ public class SQL_functions {
              ResultSet rs = st.executeQuery("SELECT * FROM \"Client\";");) {
             while (rs.next()) {
                 ans.add(new Client(
-                                rs.getInt("Clid"),
-                                null,
-                                null,
-                                rs.getString("Name"),
-                                rs.getString("Adress"),
-                                rs.getDate("Birthday"),
-                                rs.getBoolean("VipStatus"),
-                                rs.getString("PhoneNumber")
+                        rs.getInt("Clid"),
+                        null,
+                        null,
+                        rs.getString("Name"),
+                        rs.getString("Adress"),
+                        rs.getDate("Birthday"),
+                        rs.getBoolean("VipStatus"),
+                        rs.getString("PhoneNumber")
                         )
                 );
             }
@@ -483,7 +483,7 @@ public class SQL_functions {
             st.executeUpdate(String.format("UPDATE \"Client\"\n" +
                                     "SET \"ClId\" = %d, \"Name\" = '%s', \"Adress\" = '%s', \"Birthday\" = Date '%s', \"VipStatus\" = %b, \"PhoneNumber\" = '%s'\n" +
                                     "WHERE \"ClId\" = %d;",
-                            c.getId(), c.getName(), c.getEmail(), c.getBirthday(), c.isIs_vip(), c.getPhone_number(),
+                            c.getId(), c.getName(), c.getAddress(), c.getBirthday(), c.isIs_vip(), c.getPhone_number(),
                             c.getId()
                     )
             );
@@ -499,7 +499,7 @@ public class SQL_functions {
             st.executeUpdate(String.format("INSERT INTO \"Client\" " +
                                     "(\"ClId\", \"Name\", \"Adress\", \"Birthday\", \"VipStatus\", \"PhoneNumber\")\n" +
                                     "VALUES (%d, '%s', '%s', DATE '%s', %b, '%s');",
-                            c.getId(), c.getName(), c.getEmail(), c.getBirthday(), c.isIs_vip(), c.getPhone_number()
+                            c.getId(), c.getName(), c.getAddress(), c.getBirthday(), c.isIs_vip(), c.getPhone_number()
                     )
             );
         } catch (SQLException e) {

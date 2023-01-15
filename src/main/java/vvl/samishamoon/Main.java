@@ -15,12 +15,28 @@ public class Main {
         SQL_functions g = new SQL_functions();
         g.testDB();
 
-        Admin a = g.getAdmin(1);
-        a.setId(3);
-        g.insertAdmin(a);
-        System.out.println(g.getAdmins());
-        g.deleteAdmin(3);
-        System.out.println(g.getAdmins());
+        Admin a1 =  g.getAdmin(1);
+        a1.setPassword("admin1");
+        g.updateAdmin(a1);
+
+        Admin a2 =  g.getAdmin(2);
+        a2.setPassword("admin2");
+        g.updateAdmin(a2);
+
+
+
+//        PrintArray.printAdmins(g.getAdmins());
+//        PrintArray.printClients(g.getClients());
+//        PrintArray.printDishes(g.getDishes());
+//        PrintArray.printOrders(g.getOrders());
+//        PrintArray.printCoffeeShops(g.getCoffee_shops());
+//        PrintArray.printBaristas(g.getBaristas());
+
+//        a.setId(3);
+//        g.insertAdmin(a);
+//        System.out.println(g.getAdmins());
+//        g.deleteAdmin(3);
+//        System.out.println(g.getAdmins());
 
 //
 //        Barista b = g.getBarista(1);
