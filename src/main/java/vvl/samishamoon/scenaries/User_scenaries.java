@@ -150,7 +150,7 @@ public class User_scenaries {
         SQL_connection conn = new SQL_connection();
         boolean stay = true;
         while (stay) {
-            PrintArray.printBaristas(conn.getBaristas());
+            PrintArray.printDishes(conn.getDishes());
             System.out.println("Выберите действие:");
             System.out.println("1. Добавить блюдо");
             System.out.println("2. Редактировать блюдо");
@@ -304,12 +304,14 @@ public class User_scenaries {
         System.out.println("Введите цену на вынос:");
         Double priceOut = sc.nextDouble();
         System.out.println("Введите сезон:");
+        System.out.println("0. Все");
         System.out.println("1. Зима");
         System.out.println("2. Весна");
         System.out.println("3. Лето");
         System.out.println("4. Осень");
         int season = sc.nextInt();
         System.out.println("Введите смену:");
+        System.out.println("0. Все");
         System.out.println("1. (00:00 - 8:00)");
         System.out.println("2. (08:00 - 16:00)");
         System.out.println("3. (16:00 - 00:00)");
@@ -334,12 +336,14 @@ public class User_scenaries {
         System.out.println("Введите цену на вынос:");
         Double priceOut = sc.nextDouble();
         System.out.println("Введите сезон:");
+        System.out.println("0. Все");
         System.out.println("1. Зима");
         System.out.println("2. Весна");
         System.out.println("3. Лето");
         System.out.println("4. Осень");
         int season = sc.nextInt();
         System.out.println("Введите смену:");
+        System.out.println("0. Все");
         System.out.println("1. (00:00 - 8:00)");
         System.out.println("2. (08:00 - 16:00)");
         System.out.println("3. (16:00 - 00:00)");
